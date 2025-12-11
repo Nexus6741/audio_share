@@ -20,10 +20,15 @@ class AudioSender {
 
   Future<void> start() async {
     _recorder = Record();
+    final hasPermission = await _recorder.hasPermission();
+    if (!hasPermission) {
+      throw RecordingPermissionException('Microphone permission not granted');
+    }
     _socket = await RawDatagramSocket.bind(InternetAddress.anyIPv4, 0);
+    final targetPort = target.port ?? port;
     await _recorder.startStream(encoder: AudioEncoder.pcm16bitsLE).then((stream) {
       _audioSubscription = stream.listen((data) {
-        _socket?.send(data, target.address, port);
+        _socket?.send(data, target.address, targetPort);
       });
     });
   }

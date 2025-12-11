@@ -64,7 +64,11 @@ class DiscoveryService {
   void updatePresence({int? port, bool? accepting}) {
     _advertisedPort = port;
     _accepting = accepting;
+    _announce();
   }
+
+  /// Trigger an immediate announcement using the latest metadata.
+  void forceAnnounce() => _announce();
 
   void _bind() async {
     _socket = await RawDatagramSocket.bind(InternetAddress.anyIPv4, discoveryPort);

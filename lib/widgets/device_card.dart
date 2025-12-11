@@ -18,12 +18,12 @@ class DeviceCard extends StatelessWidget {
       child: ListTile(
         title: Text(device.name ?? device.id.substring(0, 8)),
         subtitle: Text(
-          '${device.platform} @ ${device.address.address}:${device.port ?? 'N/A'}'
-          '${accepting ? ' · 接收中' : ''}',
+          '${device.platform} @ ${device.address.address}:${device.port ?? 'N/A'}${accepting ? ' · 接收中' : ''}',
         ),
         trailing: selected
             ? const Icon(Icons.check_circle, color: Colors.deepPurple)
             : (accepting ? const Icon(Icons.hearing, color: Colors.green) : null),
+        enabled: accepting,
         onTap: onTap,
       ),
     );
