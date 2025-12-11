@@ -1,0 +1,18 @@
+name: audio_share
+description: Cross-platform LAN audio sharing app.
+version: 0.1.0
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.0.5
+  record: ^4.4.3
+  just_audio: ^0.9.36
+  uuid: ^4.4.1
+
+flutter:
+  uses-material-design: true
